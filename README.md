@@ -6,7 +6,7 @@ A modern, cloud-synced Task Manager with Google Authentication, per-day habit tr
 
 Hosted on Vercel:
 (Add your deployed URL here)
-👉 https://your-vercel-project.vercel.app
+👉 https://to-do-app-iota-beryl.vercel.app/
 
 ✨ Features
 🔐 Google Authentication
@@ -109,7 +109,7 @@ task-calender/
 
 🔧 Installation & Setup
 1️⃣ Clone the repo
-git clone https://github.com/YOUR_USERNAME/To-Do-App.git
+git clone https://github.com/Shubhang0802/To-Do-App.git
 cd task-calender
 
 2️⃣ Install dependencies
