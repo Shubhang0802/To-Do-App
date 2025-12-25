@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
@@ -6,6 +7,7 @@ import { getMonthKey } from '../utils/dateUtils';
 
 export default function Sidebar({ currentDate }) {
     const { currentUser, logout } = useAuth();
+    const navigate = useNavigate();
     const [tasks, setTasks] = useState([]);
     const [newTaskTitle, setNewTaskTitle] = useState('');
 
@@ -63,9 +65,14 @@ export default function Sidebar({ currentDate }) {
         <div className="sidebar">
             <div className="sidebar-header">
                 <h2>Tasks</h2>
-                <button onClick={logout} className="logout-btn">
-                    Logout
-                </button>
+                <div className="header-buttons">
+                    <button onClick={() => navigate('/daily-tasks')} className="daily-tasks-btn">
+                        📅 Daily Tasks
+                    </button>
+                    <button onClick={logout} className="logout-btn">
+                        Logout
+                    </button>
+                </div>
             </div>
 
             <form onSubmit={handleAddTask} className="add-task-form">

@@ -12,12 +12,12 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyANNhveiZXeh84h88PNjXPma-HyEpRRUhA",
+  authDomain: "task-calender-57dad.firebaseapp.com",
+  projectId: "task-calender-57dad",
+  storageBucket: "task-calender-57dad.firebasestorage.app",
+  messagingSenderId: "776111971364",
+  appId: "1:776111971364:web:73a83a889a378513660cb1"
 };
 
 const app = initializeApp(firebaseConfig);

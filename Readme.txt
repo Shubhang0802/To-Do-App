@@ -1,188 +1,285 @@
 📅 Task Calendar — React + Vite + Firebase
 
-A modern, cloud-synced Task Manager with Google Authentication, per-day habit tracking, and real-time productivity graphs.
+A modern, cloud-synced task management application built with React + Vite and Firebase. 
+Track your monthly tasks and manage daily to-dos with real-time synchronization.
 
-🚀 Live Demo
+================================================================================
+🚀 LIVE DEMO
+================================================================================
 
 Hosted on Vercel:
-(Add your deployed URL here)
 👉 https://to-do-app-iota-beryl.vercel.app/
 
-✨ Features
-🔐 Google Authentication
+================================================================================
+✨ FEATURES
+================================================================================
 
-Secure login using Firebase Authentication
+📅 MONTHLY TASK TRACKING
+━━━━━━━━━━━━━━━━━━━━━━
+• Create and manage tasks for the entire month
+• Calendar grid view showing all days
+• Check off tasks as you complete them for each day
+• Visual progress graph showing completion rate
+• Real-time synchronization across devices
 
-User-specific cloud data
+🗓️ DAILY TASKS (NEW!)
+━━━━━━━━━━━━━━━━━━━━━
+• Dedicated page for managing daily to-dos
+• Select any date and add specific tasks
+• Mark tasks as complete with checkboxes
+• Sidebar-based UI for easy navigation
+• Tasks organized by day with month/year navigation
 
-Auto-redirect on login/logout
+🔐 GOOGLE AUTHENTICATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+• Secure login using Firebase Authentication
+• User-specific cloud data isolation
+• Auto-redirect on login/logout
 
-🗓️ Cloud-Synced Calendar
+🎨 MODERN UI/UX
+━━━━━━━━━━━━━━━
+• Dark mode with purple gradient accents
+• Smooth animations and transitions
+• Responsive design for all screen sizes
+• Premium glassmorphism effects
+• Intuitive navigation
 
-Add/remove daily repeating tasks
+================================================================================
+🛠️ TECH STACK
+================================================================================
 
-Checkboxes for each date of the month
+Frontend:        React 19.2.0 (Vite 7.2.4)
+Routing:         React Router DOM 7.1.3
+Authentication:  Firebase Auth (Google)
+Database:        Firebase Firestore
+Styling:         Vanilla CSS with CSS Variables
+Fonts:           Google Fonts (Inter)
+Deployment:      Vercel
 
-Auto-save to Firestore
+================================================================================
+📁 PROJECT STRUCTURE
+================================================================================
 
-Checkboxes persist after page refresh
-
-Month navigation (Previous/Next)
-
-📊 Real-Time Productivity Graph
-
-Calculates daily completion score
-
-Updates instantly when tasks/checkboxes change
-
-Smooth SVG graph with hover tooltips
-
-Purple-blue gradient line
-
-📁 Firestore Cloud Storage
-
-Tasks stored at:
-
-users/{uid}/months/{YYYY-MM}/tasks/{taskId}
-
-
-Each task contains:
-
-{
-  title: "...",
-  checks: {
-    "01": true,
-    "02": false
-  }
-}
-
-🎨 Clean, Modern UI
-
-Black-Purple premium dark theme
-
-Responsive layout
-
-Sticky sidebar
-
-Smooth animations
-
-Built with plain CSS (no Tailwind)
-
-🏗️ Tech Stack
-
-React (Vite)
-
-Firebase Authentication
-
-Firebase Firestore
-
-Vercel Deployment
-
-Plain CSS
-
-Modern React Hooks (useState, useEffect, useMemo)
-
-📦 Folder Structure
-task-calender/
+To-Do-App/task-calender/
 │
-├── public/
 ├── src/
 │   ├── components/
-│   │   ├── Sidebar.jsx
-│   │   ├── CalendarGrid.jsx
-│   │   └── ProgressGraph.jsx
+│   │   ├── Sidebar.jsx          # Main sidebar with tasks list
+│   │   ├── CalendarGrid.jsx      # Monthly calendar grid
+│   │   └── ProgressGraph.jsx     # Visual progress chart
+│   │
+│   ├── pages/
+│   │   └── DailyTasks.jsx        # Daily tasks page (NEW!)
+│   │
 │   ├── context/
-│   │   └── AuthContext.jsx
+│   │   └── AuthContext.jsx       # Firebase authentication
+│   │
 │   ├── utils/
-│   │   └── dateUtils.js
-│   ├── App.jsx
-│   ├── firebase.js
-│   ├── index.css
-│   └── main.jsx
+│   │   └── dateUtils.js          # Date helper functions
+│   │
+│   ├── App.jsx                   # Main app with routing
+│   ├── firebase.js               # Firebase config
+│   ├── index.css                 # Global styles
+│   └── main.jsx                  # Entry point
 │
-├── .env.example
-├── .gitignore
-├── index.html
 ├── package.json
-├── vite.config.js
-└── README.md
+└── vite.config.js
 
-🔧 Installation & Setup
-1️⃣ Clone the repo
-git clone https://github.com/Shubhang0802/To-Do-App.git
-cd task-calender
+================================================================================
+🔧 INSTALLATION & SETUP
+================================================================================
 
-2️⃣ Install dependencies
-npm install
+1️⃣ CLONE THE REPOSITORY
+   git clone https://github.com/Shubhang0802/To-Do-App.git
+   cd To-Do-App/task-calender
 
-3️⃣ Create .env (use .env.example template)
-VITE_FIREBASE_API_KEY=xxxx
-VITE_FIREBASE_AUTH_DOMAIN=xxxx
-VITE_FIREBASE_PROJECT_ID=xxxx
-VITE_FIREBASE_STORAGE_BUCKET=xxxx
-VITE_FIREBASE_MESSAGING_SENDER_ID=xxxx
-VITE_FIREBASE_APP_ID=xxxx
+2️⃣ INSTALL DEPENDENCIES
+   npm install
 
-4️⃣ Start development server
-npm run dev
+3️⃣ FIREBASE CONFIGURATION
+   Already configured in src/firebase.js:
+   {
+     apiKey: "AIzaSyANNhveiZXeh84h88PNjXPma-HyEpRRUhA",
+     authDomain: "task-calender-57dad.firebaseapp.com",
+     projectId: "task-calender-57dad",
+     storageBucket: "task-calender-57dad.firebasestorage.app",
+     messagingSenderId: "776111971364",
+     appId: "1:776111971364:web:73a83a889a378513660cb1"
+   }
 
-🔥 Firebase Setup
-Enable Services:
+4️⃣ FIRESTORE SECURITY RULES (CRITICAL!)
+   
+   ⚠️ MUST ADD IN FIREBASE CONSOLE:
+   Firebase Console → Firestore Database → Rules
+   
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
 
-Authentication → Google Sign-in
+       // Main tasks rule
+       match /users/{userId}/months/{monthId}/tasks/{taskId} {
+         allow read, write: if request.auth != null
+           && request.auth.uid == userId;
+       }
 
-Firestore Database (start in test mode)
+       // Daily tasks rule (BEFORE catch-all)
+       match /users/{userId}/months/{monthId}/dailyTasks/{dayId}/tasks/{taskId} {
+         allow read, write: if request.auth != null 
+           && request.auth.uid == userId;
+       }
 
-Add Authorized Domains:
+       // Catch-all deny (LAST)
+       match /{document=**} {
+         allow read, write: if false;
+       }
+     }
+   }
 
-localhost
+5️⃣ START DEVELOPMENT SERVER
+   npm run dev
 
-localhost:5173
+6️⃣ OPEN BROWSER
+   http://localhost:5173/
 
-127.0.0.1
+================================================================================
+🔥 FIREBASE SETUP
+================================================================================
 
-your-vercel-domain.vercel.app
+ENABLE SERVICES:
+• Authentication → Google Sign-in
+• Firestore Database (production mode)
 
-🚀 Deployment (Vercel)
+ADD AUTHORIZED DOMAINS:
+• localhost
+• localhost:5173
+• 127.0.0.1
+• your-vercel-domain.vercel.app
+
+================================================================================
+🎯 USAGE
+================================================================================
+
+MONTHLY TASK MANAGEMENT:
+1. Login with Google account
+2. Add tasks using sidebar input
+3. Mark days complete in calendar grid
+4. View progress graph
+5. Navigate months with arrows
+
+DAILY TASKS (NEW!):
+1. Click "📅 Daily Tasks" button
+2. Select month (← →)
+3. Choose day from grid (1-31)
+4. Add tasks in sidebar
+5. Mark complete with checkboxes
+6. Delete with × button
+
+================================================================================
+📊 FIRESTORE DATA STRUCTURE
+================================================================================
+
+MONTHLY TASKS:
+users/{uid}/months/{YYYY-MM}/tasks/{taskId}
+  - title: string
+  - createdAt: timestamp
+  - checks: { "01": true, "15": false, ... }
+
+DAILY TASKS (NEW!):
+users/{uid}/months/{YYYY-MM}/dailyTasks/{DD}/tasks/{taskId}
+  - title: string
+  - completed: boolean
+  - createdAt: timestamp
+
+================================================================================
+🚀 DEPLOYMENT (VERCEL)
+================================================================================
+
 1️⃣ Push to GitHub
-2️⃣ Import repo into Vercel
-3️⃣ Set “Root Directory” to:
-task-calender
+   git add .
+   git commit -m "Deploy to Vercel"
+   git push origin main
 
-4️⃣ Add Environment Variables (Production)
-VITE_FIREBASE_API_KEY=xxxx
-VITE_FIREBASE_AUTH_DOMAIN=xxxx
-VITE_FIREBASE_PROJECT_ID=xxxx
-VITE_FIREBASE_STORAGE_BUCKET=xxxx
-VITE_FIREBASE_MESSAGING_SENDER_ID=xxxx
-VITE_FIREBASE_APP_ID=xxxx
+2️⃣ Import into Vercel
+   Root Directory: task-calender
 
-5️⃣ Deploy
+3️⃣ Environment Variables
+   Not needed (hardcoded Firebase config)
 
-Vercel will auto-build the Vite app.
+4️⃣ Deploy
+   Vercel auto-builds Vite app
 
-🧪 Features Checklist
+================================================================================
+📦 AVAILABLE SCRIPTS
+================================================================================
 
-✔ Login with Google
-✔ Month navigation
-✔ Add/remove tasks
-✔ Persistent checkbox states
-✔ Real-time Firestore sync
-✔ Real-time graph updates
-✔ Responsive layout
-✔ Dark theme
-✔ Deployed to Vercel
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
 
-🛠️ Future Improvements
+================================================================================
+🧪 FEATURES CHECKLIST
+================================================================================
 
-Dark/Light mode toggle
+✅ Login with Google
+✅ Month navigation
+✅ Add/remove monthly tasks
+✅ Persistent checkbox states
+✅ Real-time Firestore sync
+✅ Real-time graph updates
+✅ Responsive layout
+✅ Dark theme with purple accents
+✅ Daily Tasks with sidebar UI (NEW!)
+✅ Task completion checkboxes (NEW!)
+✅ Multi-page routing (NEW!)
+✅ Deployed to Vercel
 
-Export monthly report
+================================================================================
+📝 RECENT UPDATES (v1.0.0)
+================================================================================
 
-Push notifications
+✅ Added Daily Tasks feature with sidebar-based UI
+✅ Implemented task completion checkboxes with strikethrough
+✅ Fixed sidebar button layout (horizontal alignment)
+✅ Updated text labels for better UX ("Tasks for today")
+✅ Fixed Firebase configuration (blank screen issue resolved)
+✅ Added React Router for multi-page navigation
+✅ Enhanced Firestore security rules
+✅ Improved overall UI/UX with modern design
 
-Team task sharing
+================================================================================
+🔒 SECURITY
+================================================================================
 
-📝 License
+• User authentication required for all operations
+• Firestore rules enforce user-specific data access
+• No anonymous access
+• Data isolated per user
 
-MIT License — free for personal & commercial use.
+================================================================================
+🛠️ FUTURE IMPROVEMENTS
+================================================================================
+
+• Dark/Light mode toggle
+• Export monthly report
+• Push notifications
+• Team task sharing
+• Calendar export (iCal)
+• Mobile app (React Native)
+
+================================================================================
+📄 LICENSE
+================================================================================
+
+MIT License — free for personal & commercial use
+
+================================================================================
+👤 AUTHOR
+================================================================================
+
+Created with ❤️ by Shubhang
+Enhanced with Antigravity AI Assistant
+
+================================================================================
+
+Happy Task Managing! 📝✨

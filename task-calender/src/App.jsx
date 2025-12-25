@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 import Sidebar from './components/Sidebar'
 import CalendarGrid from './components/CalendarGrid'
 import ProgressGraph from './components/ProgressGraph'
+import DailyTasks from './pages/DailyTasks'
 
 function App() {
   const { currentUser, loading, loginWithGoogle } = useAuth();
@@ -38,13 +40,23 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Sidebar currentDate={currentDate} />
-      <div className="main-content">
-        <CalendarGrid currentDate={currentDate} onDateChange={setCurrentDate} />
-        <ProgressGraph currentDate={currentDate} />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="app">
+              <Sidebar currentDate={currentDate} />
+              <div className="main-content">
+                <CalendarGrid currentDate={currentDate} onDateChange={setCurrentDate} />
+                <ProgressGraph currentDate={currentDate} />
+              </div>
+            </div>
+          }
+        />
+        <Route path="/daily-tasks" element={<DailyTasks />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
